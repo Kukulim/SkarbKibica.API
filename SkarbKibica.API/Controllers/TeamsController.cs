@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SkarbKibica.API.Dtos;
 using SkarbKibica.API.Entities;
 using SkarbKibica.API.Services;
+using System;
+using System.Collections.Generic;
 
 namespace SkarbKibica.API.Controllers
 {
@@ -22,7 +19,8 @@ namespace SkarbKibica.API.Controllers
         {
             _teamRepository = teamRepository ??
                 throw new ArgumentNullException(nameof(teamRepository));
-            _mapper = mapper;
+            _mapper = mapper ??
+                throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet()]
@@ -32,15 +30,25 @@ namespace SkarbKibica.API.Controllers
 
             return Ok(_mapper.Map<IEnumerable<TeamDto>>(teamsFromRepo));
         }
+
         [HttpGet("{id}")]
         public IActionResult GetTeam(int id)
         {
             var teamFromRepo = _teamRepository.GetTeam(id);
-            if (teamFromRepo== null)
+            if (teamFromRepo == null)
             {
                 return NotFound();
             }
-            return Ok(teamFromRepo);
+            return Ok(_mapper.Map<TeamDto>(teamFromRepo));
+        }
+        [HttpPost]
+        public IActionResult CreateTeam(TeamCreationDto teamCreation)
+        {
+            var teamEntity = _mapper.Map<Team>(teamCreation);
+            _teamRepository.AddTeam(teamEntity);
+            _teamRepository.Compleate();
+
+            return Ok();
         }
     }
 }

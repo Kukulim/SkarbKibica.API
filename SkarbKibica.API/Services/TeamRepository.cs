@@ -18,7 +18,12 @@ namespace SkarbKibica.API.Services
 
         public void AddTeam(Team team)
         {
-            throw new NotImplementedException();
+            context.Teams.Add(team);
+        }
+
+        public void Compleate()
+        {
+            context.SaveChanges();
         }
 
         public void DeleteTeam(Team team)

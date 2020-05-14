@@ -17,7 +17,12 @@ namespace SkarbKibica.API.Services
 
         public void AddStadium(Stadium stadium)
         {
-            throw new NotImplementedException();
+            context.Stadiums.Add(stadium);
+        }
+
+        public void Compleate()
+        {
+            context.SaveChanges();
         }
 
         public void DeleteStadium(Stadium stadium)

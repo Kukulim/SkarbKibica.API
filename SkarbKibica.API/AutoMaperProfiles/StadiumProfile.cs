@@ -13,6 +13,7 @@ namespace SkarbKibica.API.AutoMaperProfiles
         public StadiumProfile()
         {
             CreateMap<Stadium, StadiumDto>();
+            CreateMap<StadiumCreationDto, Stadium>();
         }
     }
 }

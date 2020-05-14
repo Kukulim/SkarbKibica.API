@@ -13,6 +13,7 @@ namespace SkarbKibica.API.Services
         void AddStadium(Stadium stadium);
         void UpdateStadium(Stadium stadium);
         void DeleteStadium(Stadium stadium);
+        void Compleate();
 
     }
 }
