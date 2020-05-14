@@ -1,13 +1,20 @@
-﻿using SkarbKibica.API.Entities;
+﻿using SkarbKibica.API.DbContexts;
+using SkarbKibica.API.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SkarbKibica.API.Services
 {
     public class StadiumRepository : IStadiumRepository
     {
+        private readonly SkarbKibicaDbContext context;
+
+        public StadiumRepository(SkarbKibicaDbContext _context)
+        {
+            this.context = _context;
+        }
+
         public void AddStadium(Stadium stadium)
         {
             throw new NotImplementedException();
@@ -20,12 +27,12 @@ namespace SkarbKibica.API.Services
 
         public Stadium GetStadium(int stadiumId)
         {
-            throw new NotImplementedException();
+            return context.Stadiums.Where(s => s.Id == stadiumId).FirstOrDefault();
         }
 
         public IEnumerable<Stadium> GetStadiums()
         {
-            throw new NotImplementedException();
+            return context.Stadiums.ToList();
         }
 
         public void UpdateStadium(Stadium stadium)

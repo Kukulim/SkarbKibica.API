@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SkarbKibica.API.Services
 {
-    interface ITeamRepository
+    public interface ITeamRepository
     {
         IEnumerable<Team> GetTeams();
         Team GetTeam(int TeamId);

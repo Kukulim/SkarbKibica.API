@@ -1,13 +1,21 @@
-﻿using SkarbKibica.API.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SkarbKibica.API.DbContexts;
+using SkarbKibica.API.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SkarbKibica.API.Services
 {
     public class TeamRepository : ITeamRepository
     {
+        private readonly SkarbKibicaDbContext context;
+
+        public TeamRepository(SkarbKibicaDbContext _context)
+        {
+            this.context = _context;
+        }
+
         public void AddTeam(Team team)
         {
             throw new NotImplementedException();
@@ -20,12 +28,12 @@ namespace SkarbKibica.API.Services
 
         public Team GetTeam(int TeamId)
         {
-            throw new NotImplementedException();
+            return context.Teams.Include(s => s.Stadium).Where(t => t.Id == TeamId).FirstOrDefault();
         }
 
         public IEnumerable<Team> GetTeams()
         {
-            throw new NotImplementedException();
+            return context.Teams.Include(s => s.Stadium).OrderBy(t => t.Name).ToList();
         }
 
         public void UpdateTeam(Team team)

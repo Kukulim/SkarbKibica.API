@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SkarbKibica.API.Services
 {
-    interface IStadiumRepository
+    public interface IStadiumRepository
     {
         IEnumerable<Stadium> GetStadiums();
         Stadium GetStadium(int stadiumId);
