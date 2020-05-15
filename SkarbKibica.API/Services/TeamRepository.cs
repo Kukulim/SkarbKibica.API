@@ -26,9 +26,10 @@ namespace SkarbKibica.API.Services
             context.SaveChanges();
         }
 
-        public void DeleteTeam(Team team)
+        public void DeleteTeam(int id)
         {
-            throw new NotImplementedException();
+            var teamToDelete = context.Teams.Where(t => t.Id == id).FirstOrDefault();
+            context.Teams.Remove(teamToDelete);
         }
 
         public Team GetTeam(int TeamId)

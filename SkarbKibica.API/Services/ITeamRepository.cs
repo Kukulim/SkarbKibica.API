@@ -12,7 +12,7 @@ namespace SkarbKibica.API.Services
         Team GetTeam(int TeamId);
         void AddTeam(Team team);
         void UpdateTeam(Team team);
-        void DeleteTeam(Team team);
+        void DeleteTeam(int id);
         void Compleate();
     }
 }
