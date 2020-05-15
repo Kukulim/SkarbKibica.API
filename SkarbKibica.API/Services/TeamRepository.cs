@@ -43,7 +43,7 @@ namespace SkarbKibica.API.Services
 
         public void UpdateTeam(Team team)
         {
-            throw new NotImplementedException();
+            context.Entry(team).State = EntityState.Modified;
         }
     }
 }

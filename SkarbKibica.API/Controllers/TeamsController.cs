@@ -50,5 +50,16 @@ namespace SkarbKibica.API.Controllers
 
             return Ok();
         }
+        [HttpPut("{id}")]
+        public IActionResult UpdateTeam(TeamCreationDto teamCreation, int id)
+        {
+            var teamFromRepo = _teamRepository.GetTeam(id);
+            _mapper.Map(teamCreation ,teamFromRepo);
+            
+            _teamRepository.UpdateTeam(teamFromRepo);
+            _teamRepository.Compleate();
+
+            return Ok();
+        }
     }
 }
