@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SkarbKibica.API.Dtos;
 using SkarbKibica.API.Entities;
 using SkarbKibica.API.Services;
 using System;
 using System.Collections.Generic;
+
 
 namespace SkarbKibica.API.Controllers
 {
@@ -54,6 +56,12 @@ namespace SkarbKibica.API.Controllers
         public IActionResult UpdateTeam(TeamCreationDto teamUpdate, int id)
         {
             var teamFromRepo = _teamRepository.GetTeam(id);
+
+            if (teamFromRepo == null)
+            {
+                return NotFound();
+            }
+
             _mapper.Map(teamUpdate, teamFromRepo);
             
             _teamRepository.UpdateTeam(teamFromRepo);
@@ -61,13 +69,45 @@ namespace SkarbKibica.API.Controllers
 
             return Ok();
         }
-        [HttpDelete("{id}")]
-        public IActionResult DeleteTeam(int id)
+        [HttpPatch("{id}")]
+        public IActionResult PatchTeam(JsonPatchDocument<TeamCreationDto> teamUpdate, int id)
         {
-            _teamRepository.DeleteTeam(id);
+            var teamFromRepo = _teamRepository.GetTeam(id);
+
+            if (teamFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var teamToPatch = _mapper.Map<TeamCreationDto>(teamFromRepo);
+
+            teamUpdate.ApplyTo(teamToPatch, ModelState);
+
+            if (!TryValidateModel(teamToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(teamToPatch, teamFromRepo);
+
+            _teamRepository.UpdateTeam(teamFromRepo);
             _teamRepository.Compleate();
 
             return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteTeam(int id)
+        {
+            var teamToDelete = _teamRepository.GetTeam(id);
+            if (teamToDelete==null)
+            {
+                return NotFound();
+            }
+            _teamRepository.DeleteTeam(teamToDelete);
+            _teamRepository.Compleate();
+
+            return NoContent();
         }
     }
 }

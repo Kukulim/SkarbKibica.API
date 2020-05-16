@@ -14,6 +14,7 @@ namespace SkarbKibica.API.AutoMaperProfiles
         {
             CreateMap<Stadium, StadiumDto>();
             CreateMap<StadiumCreationDto, Stadium>();
+            CreateMap<Stadium, StadiumCreationDto>();
         }
     }
 }
