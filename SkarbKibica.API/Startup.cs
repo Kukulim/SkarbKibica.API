@@ -36,6 +36,17 @@ namespace SkarbKibica.API
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<IStadiumRepository, StadiumRepository>();
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
             services.AddDbContext<SkarbKibicaDbContext>(options =>
             {
                 options.UseSqlServer(
@@ -51,10 +62,7 @@ namespace SkarbKibica.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(options =>
-            {
-                options.AllowAnyOrigin();
-            });
+            app.UseCors();
 
             app.UseHttpsRedirection();
 
