@@ -8,7 +8,7 @@ namespace SkarbKibica.API.Services
 {
     public interface ITeamSquadsRepository
     {
-        IEnumerable<TeamSquad> GetTeamSquads();
+        IEnumerable<TeamSquad> GetTeamSquads(int teamId);
         TeamSquad GetTeamSquad(int teamSquadId);
         void AddTeamSquad(TeamSquad teamSquad);
         void UpdateTeamSquad(TeamSquad teamSquad);

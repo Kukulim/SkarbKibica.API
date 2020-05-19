@@ -35,7 +35,7 @@ namespace SkarbKibica.API.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TeamSquad> GetTeamSquads()
+        public IEnumerable<TeamSquad> GetTeamSquads(int teamId)
         {
             throw new NotImplementedException();
         }
