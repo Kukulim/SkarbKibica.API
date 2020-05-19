@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SkarbKibica.API.Entities
 {
@@ -19,5 +20,8 @@ namespace SkarbKibica.API.Entities
         public string ClubColors { get; set; }
 
         public Stadium Stadium { get; set; }
+
+        public ICollection<TeamSquad> TeamSquads { get; set; }
+            = new List<TeamSquad>();
     }
 }

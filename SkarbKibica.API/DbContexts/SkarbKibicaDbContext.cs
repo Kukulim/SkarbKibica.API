@@ -12,6 +12,8 @@ namespace SkarbKibica.API.DbContexts
 
         public DbSet<Team> Teams { get; set; }
         public DbSet<Stadium> Stadiums { get; set; }
+        public DbSet <TeamSquad> TeamSquads { get; set; }
+        public DbSet <Player> Players { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
