@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkarbKibica.API.DbContexts;
 
 namespace SkarbKibica.API.Migrations
 {
     [DbContext(typeof(SkarbKibicaDbContext))]
-    partial class SkarbKibicaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200519101631_addTeamSquadaandPlayers")]
+    partial class addTeamSquadaandPlayers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

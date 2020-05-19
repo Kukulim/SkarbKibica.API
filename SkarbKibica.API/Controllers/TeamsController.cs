@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace SkarbKibica.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/teams")]
     [ApiController]
     public class TeamsController : ControllerBase
     {

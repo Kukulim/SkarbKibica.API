@@ -30,14 +30,14 @@ namespace SkarbKibica.API.Services
             throw new NotImplementedException();
         }
 
-        public TeamSquad GetTeamSquad(int teamSquadId)
+        public TeamSquad GetTeamSquad(int teamId, int teamSquadId)
         {
-            throw new NotImplementedException();
+            return context.TeamSquads.Where(t => t.TeamId == teamId && t.Id == teamSquadId).FirstOrDefault();
         }
 
         public IEnumerable<TeamSquad> GetTeamSquads(int teamId)
         {
-            throw new NotImplementedException();
+            return context.TeamSquads.Where(t => t.TeamId == teamId).ToList();
         }
 
         public void UpdateTeamSquad(TeamSquad teamSquad)

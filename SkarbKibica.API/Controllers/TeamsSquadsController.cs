@@ -10,7 +10,7 @@ using SkarbKibica.API.Services;
 
 namespace SkarbKibica.API.Controllers
 {
-    [Route("api/[controller]/{teamId}/TeamSquads")]
+    [Route("api/teams/{teamId}/TeamSquads")]
     [ApiController]
     public class TeamsSquadsController : ControllerBase
     {
@@ -28,19 +28,16 @@ namespace SkarbKibica.API.Controllers
         public IActionResult GetTeamsSquads(int teamId)
         {
             var teamsSquadFromTeamFromRepo = teamSquadsRepository.GetTeamSquads(teamId);
-            if (teamsSquadFromTeamFromRepo == null)
-            {
-                return NotFound();
-            }
 
             return Ok(mapper.Map<IEnumerable<TeamSquadDto>>(teamsSquadFromTeamFromRepo));
         }
 
         // GET: api/TeamsSquad/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{teamSquadId}", Name = "GetTeamSquadFromTeam")]
+        public IActionResult Get(int teamId, int teamSquadId)
         {
-            return "value";
+            var teamSquadFromTeamFromRepo = teamSquadsRepository.GetTeamSquad(teamId, teamSquadId);
+            return Ok(mapper.Map<TeamSquadDto>(teamSquadFromTeamFromRepo));
         }
 
         // POST: api/TeamsSquad
