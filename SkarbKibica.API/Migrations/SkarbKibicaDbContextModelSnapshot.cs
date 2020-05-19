@@ -191,7 +191,7 @@ namespace SkarbKibica.API.Migrations
 
             modelBuilder.Entity("SkarbKibica.API.Entities.TeamSquad", b =>
                 {
-                    b.HasOne("SkarbKibica.API.Entities.Team", null)
+                    b.HasOne("SkarbKibica.API.Entities.Team", "Team")
                         .WithMany("TeamSquads")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)

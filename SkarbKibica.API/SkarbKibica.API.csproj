@@ -5,6 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200519120812_addTeamForeignKeytoTeamSquad.cs" />
+    <Compile Remove="Migrations\20200519120812_addTeamForeignKeytoTeamSquad.Designer.cs" />
+    <Compile Remove="Migrations\20200519125225_test.cs" />
+    <Compile Remove="Migrations\20200519125225_test.Designer.cs" />
+    <Compile Remove="Migrations\20200519142231_test.cs" />
+    <Compile Remove="Migrations\20200519142231_test.Designer.cs" />
+    <Compile Remove="Migrations\20200519145515_test.cs" />
+    <Compile Remove="Migrations\20200519145515_test.Designer.cs" />
+    <Compile Remove="Migrations\20200519145757_test.cs" />
+    <Compile Remove="Migrations\20200519145757_test.Designer.cs" />
+    <Compile Remove="Migrations\20200519150008_test.cs" />
+    <Compile Remove="Migrations\20200519150008_test.Designer.cs" />
+    <Compile Remove="Migrations\20200519150625_test.cs" />
+    <Compile Remove="Migrations\20200519150625_test.Designer.cs" />
+    <Compile Remove="Migrations\20200519160900_test.cs" />
+    <Compile Remove="Migrations\20200519160900_test.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.4" />

@@ -14,6 +14,8 @@ namespace SkarbKibica.API.AutoMaperProfiles
         public TeamSquadProfile()
         {
             CreateMap<TeamSquad, TeamSquadDto>();
+            CreateMap<TeamSquadCreationDto, TeamSquad>();
+            CreateMap<TeamSquad, TeamSquadCreationDto>();
         }
     }
 }

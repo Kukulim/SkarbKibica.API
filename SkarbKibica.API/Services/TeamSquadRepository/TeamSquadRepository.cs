@@ -15,14 +15,19 @@ namespace SkarbKibica.API.Services
         {
             context = _context;
         }
-        public void AddTeamSquad(TeamSquad teamSquad)
+        public void AddTeamSquad(int teamId, TeamSquad teamSquad)
         {
-            throw new NotImplementedException();
+            if (teamSquad == null)
+            {
+                throw new ArgumentNullException(nameof(teamSquad));
+            }
+            teamSquad.TeamId = teamId;
+            context.TeamSquads.Add(teamSquad);
         }
 
         public void Compleate()
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
 
         public void DeleteTeamSquad(TeamSquad teamSquad)

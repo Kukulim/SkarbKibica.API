@@ -10,7 +10,7 @@ namespace SkarbKibica.API.Services
     {
         IEnumerable<TeamSquad> GetTeamSquads(int teamId);
         TeamSquad GetTeamSquad(int teamId, int teamSquadId);
-        void AddTeamSquad(TeamSquad teamSquad);
+        void AddTeamSquad(int teamId, TeamSquad teamSquad);
         void UpdateTeamSquad(TeamSquad teamSquad);
         void DeleteTeamSquad(TeamSquad teamSquad);
         void Compleate();

@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkarbKibica.API.Dtos.TeamSquadsDtos;
+using SkarbKibica.API.Entities;
 using SkarbKibica.API.Services;
 
 namespace SkarbKibica.API.Controllers
@@ -23,7 +24,6 @@ namespace SkarbKibica.API.Controllers
             this.mapper = mapper;
         }
 
-        // GET: api/TeamsSquad
         [HttpGet]
         public IActionResult GetTeamsSquads(int teamId)
         {
@@ -32,7 +32,6 @@ namespace SkarbKibica.API.Controllers
             return Ok(mapper.Map<IEnumerable<TeamSquadDto>>(teamsSquadFromTeamFromRepo));
         }
 
-        // GET: api/TeamsSquad/5
         [HttpGet("{teamSquadId}", Name = "GetTeamSquadFromTeam")]
         public IActionResult Get(int teamId, int teamSquadId)
         {
@@ -42,9 +41,27 @@ namespace SkarbKibica.API.Controllers
 
         // POST: api/TeamsSquad
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult CreateTeamSquadForTeam(
+            int teamId, TeamSquadCreationDto teamSquad)
         {
+            var teamSquadEntity = mapper.Map<TeamSquad>(teamSquad);
+            teamSquadsRepository.AddTeamSquad(teamId, teamSquadEntity);
+            teamSquadsRepository.Compleate();
+
+            var teamSquadToReturn = mapper.Map<TeamSquadDto>(teamSquadEntity);
+
+            return CreatedAtRoute("GetTeamSquadFromTeam", new { teamId = teamId, teamSquadId = teamSquadToReturn.Id }, teamSquadToReturn);
+
         }
+
+
+
+
+
+
+
+
+
 
         // PUT: api/TeamsSquad/5
         [HttpPut("{id}")]
