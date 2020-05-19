@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SkarbKibica.API.Dtos
+namespace SkarbKibica.API.Dtos.StadiumDtos
 {
-    public class StadiumCreationDto
+    public class StadiumDto
     {
         public string Name { get; set; }
         public string Adress { get; set; }

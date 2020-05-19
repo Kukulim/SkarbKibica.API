@@ -35,6 +35,8 @@ namespace SkarbKibica.API
 
             services.AddScoped<ITeamRepository, TeamRepository>();
             services.AddScoped<IStadiumRepository, StadiumRepository>();
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
+            services.AddScoped<ITeamSquadsRepository, TeamSquadRepository>();
 
             services.AddCors(options =>
             {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SkarbKibica.API.Dtos;
+using SkarbKibica.API.Dtos.StadiumDtos;
 using SkarbKibica.API.Entities;
 using System;
 using System.Collections.Generic;

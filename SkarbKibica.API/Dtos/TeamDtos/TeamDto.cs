@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SkarbKibica.API.Dtos
+namespace SkarbKibica.API.Dtos.StadiumDtos
 {
     public class TeamDto
     {

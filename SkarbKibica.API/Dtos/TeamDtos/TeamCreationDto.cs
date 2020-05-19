@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SkarbKibica.API.Dtos.StadiumDtos.TeamDtos;
+using System.ComponentModel.DataAnnotations;
 
 namespace SkarbKibica.API.Dtos
 {

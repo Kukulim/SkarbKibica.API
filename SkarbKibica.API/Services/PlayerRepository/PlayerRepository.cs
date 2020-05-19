@@ -1,4 +1,5 @@
-﻿using SkarbKibica.API.Entities;
+﻿using SkarbKibica.API.DbContexts;
+using SkarbKibica.API.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,12 @@ namespace SkarbKibica.API.Services
 {
     public class PlayerRepository : IPlayerRepository
     {
+        private readonly SkarbKibicaDbContext context;
+
+        public PlayerRepository(SkarbKibicaDbContext _context)
+        {
+            context = _context;
+        }
         public void AddPlayer(Player Player)
         {
             throw new NotImplementedException();

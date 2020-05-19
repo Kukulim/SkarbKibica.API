@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SkarbKibica.API.Dtos;
+using SkarbKibica.API.Dtos.StadiumDtos;
 using SkarbKibica.API.Entities;
 using SkarbKibica.API.Services;
 using System;
