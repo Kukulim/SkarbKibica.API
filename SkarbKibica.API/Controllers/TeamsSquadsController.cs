@@ -25,7 +25,7 @@ namespace SkarbKibica.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetTeamsSquads(int teamId)
+        public IActionResult GetAllTeamsSquads(int teamId)
         {
             var teamsSquadFromTeamFromRepo = teamSquadsRepository.GetTeamSquads(teamId);
 
@@ -33,13 +33,12 @@ namespace SkarbKibica.API.Controllers
         }
 
         [HttpGet("{teamSquadId}", Name = "GetTeamSquadFromTeam")]
-        public IActionResult Get(int teamId, int teamSquadId)
+        public IActionResult GetTeamSquad(int teamId, int teamSquadId)
         {
             var teamSquadFromTeamFromRepo = teamSquadsRepository.GetTeamSquad(teamId, teamSquadId);
             return Ok(mapper.Map<TeamSquadDto>(teamSquadFromTeamFromRepo));
         }
 
-        // POST: api/TeamsSquad
         [HttpPost]
         public ActionResult CreateTeamSquadForTeam(
             int teamId, TeamSquadCreationDto teamSquad)
@@ -54,25 +53,39 @@ namespace SkarbKibica.API.Controllers
 
         }
 
-
-
-
-
-
-
-
-
-
-        // PUT: api/TeamsSquad/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{teamSquadId}")]
+        public ActionResult UpdateTeamSquad(int teamId, int teamSquadId, [FromBody] TeamSquadCreationDto teamSquad)
         {
+            var teamSquadFromRepo = teamSquadsRepository.GetTeamSquad(teamId, teamSquadId);
+
+            if (teamSquadFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            mapper.Map(teamSquad, teamSquadFromRepo);
+
+            teamSquadsRepository.UpdateTeamSquad(teamSquadFromRepo);
+            teamSquadsRepository.Compleate();
+
+            return NoContent();
+
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{teamSquadId}")]
+        public ActionResult DeleteTeamSquad(int teamId, int teamSquadId)
         {
+            var teamSquadFromRepo = teamSquadsRepository.GetTeamSquad(teamId, teamSquadId);
+
+            if (teamSquadFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            teamSquadsRepository.DeleteTeamSquad(teamSquadFromRepo);
+            teamSquadsRepository.Compleate();
+
+            return NoContent();
         }
     }
 }

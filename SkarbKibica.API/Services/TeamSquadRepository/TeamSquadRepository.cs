@@ -1,4 +1,5 @@
-﻿using SkarbKibica.API.DbContexts;
+﻿using Microsoft.EntityFrameworkCore;
+using SkarbKibica.API.DbContexts;
 using SkarbKibica.API.Entities;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace SkarbKibica.API.Services
 
         public void DeleteTeamSquad(TeamSquad teamSquad)
         {
-            throw new NotImplementedException();
+            context.TeamSquads.Remove(teamSquad);
         }
 
         public TeamSquad GetTeamSquad(int teamId, int teamSquadId)
@@ -47,7 +48,7 @@ namespace SkarbKibica.API.Services
 
         public void UpdateTeamSquad(TeamSquad teamSquad)
         {
-            throw new NotImplementedException();
+            context.Entry(teamSquad).State = EntityState.Modified;
         }
     }
 }
