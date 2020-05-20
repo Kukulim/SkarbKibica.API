@@ -1,4 +1,5 @@
-﻿using SkarbKibica.API.DbContexts;
+﻿using Microsoft.EntityFrameworkCore;
+using SkarbKibica.API.DbContexts;
 using SkarbKibica.API.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,24 +16,33 @@ namespace SkarbKibica.API.Services
         {
             context = _context;
         }
-        public void AddPlayer(Player Player)
+        public void AddPlayer(int teamSquadId, Player player)
         {
-            throw new NotImplementedException();
+            if (player == null)
+            {
+                throw new ArgumentNullException(nameof(player));
+            }
+            player.TeamSquadId = teamSquadId;
+            context.Players.Add(player);
         }
 
         public void Compleate()
         {
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
 
-        public void DeletePlayer(Player Player)
+        public void DeletePlayer(Player player)
         {
-            throw new NotImplementedException();
+            if (player == null)
+            {
+                throw new ArgumentNullException(nameof(player));
+            }
+            context.Players.Remove(player);
         }
 
-        public Player GetPlayer(int PlayerId)
+        public Player GetPlayer(int teamSquadId, int playerId)
         {
-            throw new NotImplementedException();
+            return context.Players.Where(p => p.Id == playerId && p.TeamSquadId == teamSquadId).FirstOrDefault();
         }
 
         public IEnumerable<Player> GetPlayers(int teamSquadId)
@@ -40,9 +50,9 @@ namespace SkarbKibica.API.Services
             return context.Players.Where(p => p.TeamSquadId == teamSquadId).ToList();
         }
 
-        public void UpdatePlayer(Player Player)
+        public void UpdatePlayer(Player player)
         {
-            throw new NotImplementedException();
+            context.Entry(player).State = EntityState.Modified;
         }
     }
 }

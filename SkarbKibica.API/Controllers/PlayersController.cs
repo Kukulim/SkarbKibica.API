@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkarbKibica.API.Dtos.PlayerDtos;
+using SkarbKibica.API.Entities;
 using SkarbKibica.API.Services;
 
 namespace SkarbKibica.API.Controllers
@@ -31,5 +32,62 @@ namespace SkarbKibica.API.Controllers
             return Ok(mapper.Map<IEnumerable<PlayerDto>>(playersFromRepo));
         }
 
+        [HttpGet("{playerId}", Name = "GetPlayer")]
+        public IActionResult GetPlayer(int teamSquadId ,int playerId)
+        {
+            var playersFromRepo = playerRepository.GetPlayer(teamSquadId, playerId);
+
+            if (playersFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(mapper.Map<PlayerDto>(playersFromRepo));
+        }
+
+        [HttpPost]
+        public ActionResult CreatePlayer(int teamSquadId, PlayerCreationDto player)
+        {
+            var playerEntity = mapper.Map<Player>(player);
+
+            playerRepository.AddPlayer(teamSquadId, playerEntity);
+            playerRepository.Compleate();
+
+            return Ok();
+        }
+
+        [HttpPut("{playerId}")]
+        public ActionResult UpdatePlayer(int teamSquadId, int playerId, [FromBody] PlayerCreationDto player)
+        {
+            var playersFromRepo = playerRepository.GetPlayer(teamSquadId, playerId);
+
+            if (playersFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            mapper.Map(player, playersFromRepo);
+
+            playerRepository.UpdatePlayer(playersFromRepo);
+            playerRepository.Compleate();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{playerId}")]
+        public ActionResult DeletePlayer(int teamSquadId, int playerId)
+        {
+            var playersFromRepo = playerRepository.GetPlayer(teamSquadId, playerId);
+
+            if (playersFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            playerRepository.DeletePlayer(playersFromRepo);
+            playerRepository.Compleate();
+
+            return NoContent();
+        }
     }
 }

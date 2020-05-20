@@ -9,10 +9,10 @@ namespace SkarbKibica.API.Services
     public interface IPlayerRepository
     {
         IEnumerable<Player> GetPlayers(int teamSquadId);
-        Player GetPlayer(int PlayerId);
-        void AddPlayer(Player Player);
-        void UpdatePlayer(Player Player);
-        void DeletePlayer(Player Player);
+        Player GetPlayer(int teamSquadId, int playerId);
+        void AddPlayer(int teamSquadId, Player player);
+        void UpdatePlayer(Player player);
+        void DeletePlayer(Player player);
         void Compleate();
     }
 }
