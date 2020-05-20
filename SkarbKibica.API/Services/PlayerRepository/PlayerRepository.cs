@@ -35,9 +35,9 @@ namespace SkarbKibica.API.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Player> GetPlayers()
+        public IEnumerable<Player> GetPlayers(int teamSquadId)
         {
-            throw new NotImplementedException();
+            return context.Players.Where(p => p.TeamSquadId == teamSquadId).ToList();
         }
 
         public void UpdatePlayer(Player Player)

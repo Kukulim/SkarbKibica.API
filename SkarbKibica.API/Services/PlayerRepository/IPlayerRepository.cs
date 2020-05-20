@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SkarbKibica.API.Services
 {
-    interface IPlayerRepository
+    public interface IPlayerRepository
     {
-        IEnumerable<Player> GetPlayers();
+        IEnumerable<Player> GetPlayers(int teamSquadId);
         Player GetPlayer(int PlayerId);
         void AddPlayer(Player Player);
         void UpdatePlayer(Player Player);
