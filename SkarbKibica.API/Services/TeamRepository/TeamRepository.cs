@@ -33,7 +33,8 @@ namespace SkarbKibica.API.Services
 
         public Team GetTeam(int TeamId)
         {
-            return context.Teams.Include(s => s.Stadium).Where(t => t.Id == TeamId).FirstOrDefault();
+            return context.Teams.Include(s => s.Stadium).Where(t => t.Id == TeamId)
+                .Include(s => s.TeamSquads).FirstOrDefault();
         }
 
         public IEnumerable<Team> GetTeams()

@@ -1,4 +1,5 @@
-﻿using SkarbKibica.API.Entities;
+﻿using SkarbKibica.API.Dtos.TeamSquadsDtos;
+using SkarbKibica.API.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,7 @@ namespace SkarbKibica.API.Dtos.StadiumDtos
         public string ClubColors { get; set; }
 
         public StadiumDto Stadium { get; set; }
+
+        public List<TeamSquadDto> TeamSquads { get; set; }
     }
 }
