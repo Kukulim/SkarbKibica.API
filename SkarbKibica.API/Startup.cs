@@ -52,17 +52,16 @@ namespace SkarbKibica.API
             services.AddDbContext<SkarbKibicaDbContext>(options =>
             {
                 options.UseSqlServer(
-                    @"Server=(localdb)\mssqllocaldb;Database=SkarbKibicaDB;Trusted_Connection=True;");
+                    //@"Server=(localdb)\mssqllocaldb;Database=SkarbKibicaDB;Trusted_Connection=True;");
+                    @"Server = tcp:skarbkibica-apidbserver.database.windows.net, 1433; Initial Catalog = SkarbKibica-api_db; Persist Security Info = False; User ID = beckon; Password = Haslo_666; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30");
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseDeveloperExceptionPage();
+
 
             app.UseCors();
 
